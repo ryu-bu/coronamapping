@@ -11,6 +11,9 @@ def about():
 @app.route('/teams')
 def teams():
     return render_template('teams.html')
+@app.route('/maps.js')
+def mapsjs():
+    return render_template('maps.js')
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug=True, host='0.0.0.0')
