@@ -1,0 +1,368 @@
+City/Town,Count,Rate,
+"",,,Please note: Data for
+"",,,
+"",,,these tables are based
+Abington,219,1219.31,
+"",,,on information
+"",,,available in the DPH
+Acton,138,581.49,surveillance database
+"",,,at a single point in
+Acushnet,73,698.34,time. Case counts for
+"",,,specific cities and
+Adams,35,422.67,
+"",,,towns change
+Agawam,423,1478.80,throughout the day as
+"",,,data cleaning occurs
+Alford,0,0,(removal of duplicate
+"",,,reports within the
+Amesbury,154,925.18,
+"",,,system) and new
+Amherst,85,209.89,demographic
+"",,,information (assigning
+Andover,263,730.25,cases to their city or
+"",,,town of residence) is
+Aquinnah,0,0,
+"",,,obtained.
+Arlington,279,609.05,
+Ashburnham,26,414.02,
+Ashby,14,404.92,
+Ashfield,<5,*,
+Ashland,214,1097.84,
+Athol,46,384.45,
+Attleboro,577,1247.09,
+Auburn,184,1115.66,
+Avon,67,1529.44,
+Ayer,65,804.46,
+Barnstable,293,653.35,
+Barre,47,845.66,
+Becket,12,666.50
+Bedford,232,1557.42
+Belchertown,88,552.67
+Bellingham,112,626.53
+Belmont,210,769.06
+Berkley,52,766.94
+Berlin,20,626.32
+Bernardston,6,286.94
+Beverly,542,1316.60
+Billerica,486,1115.11
+Blackstone,40,442.26
+Blandford,<5,*
+Bolton,12,237.50
+Boston,12629,1817.20
+Bourne,144,688.34
+Boxborough,23,450.31
+Boxford,35,453.53
+Boylston,18,400.99
+Braintree,754,1915.66
+Brewster,92,928.14
+Bridgewater,328,1153.02
+Brimfield,<5,*
+Brockton,3773,3840.27
+Brookfield,15,409.64
+Brookline,343,532.74
+Buckland,8,430.00
+Burlington,231,835.64
+Cambridge,889,788.22
+Canton,266,1153.28
+Carlisle,12,251.64
+Carver,49,402.42
+Charlemont,<5,*
+Charlton,60,426.37
+Chatham,12,204.91
+Chelmsford,302,839.32
+Chelsea,2598,6897.72
+Cheshire,<5,*
+Chester,<5,*
+Chesterfield,<5,*
+Chicopee,373,654.21
+Chilmark,<5,*
+Clarksburg,7,415.82
+Clinton,174,1236.21
+Cohasset,21,283.80
+Colrain,<5,*
+Concord,160,854.47
+Conway,<5,*
+Cummington,<5,*
+Dalton,9,137.99
+Danvers,643,2251.73
+Dartmouth,284,771.33
+Dedham,340,1253.46
+Deerfield,8,150.02
+Dennis,83,627.67
+Dighton,54,688.27
+Douglas,39,414.91
+Dover,17,326.22
+Dracut,422,1306.29
+Dudley,72,581.40
+Dunstable,9,270.10
+Duxbury,60,396.48
+East Bridgewater,172,1165.60
+East Brookfield,9,401.53
+East Longmeadow,238,1407.08
+Eastham,10,215.22
+Easthampton,70,431.74
+Easton,248,1046.49
+Edgartown,7,170.66
+Egremont,5,456.27
+Erving,6,286.53
+Essex,21,564.41
+Everett,1474,3036.90
+Fairhaven,183,1141.57
+Fall River,1051,1175.00
+Falmouth,170,543.97
+Fitchburg,631,1496.94
+Florida,<5,*
+Foxborough,100,552.10
+Framingham,1493,2004.93
+Franklin,111,328.28
+Freetown,80,884.15
+Gardner,156,780.39
+Georgetown,45,503.70
+Gill,<5,*
+Gloucester,233,813.98
+Goshen,<5,*
+Gosnold,0,0
+Grafton,81,406.13
+Granby,26,423.35
+Granville,9,578.29
+Great Barrington,52,765.18
+Greenfield,189,1088.43
+Groton,38,326.31
+Groveland,28,409.74
+Hadley,40,695.61
+Halifax,48,628.16
+Hamilton,28,374.63
+Hampden,45,910.79
+Hancock,<5,*
+Hanover,60,418.85
+Hanson,88,821.91
+Hardwick,7,211.39
+Harvard,16,230.97
+Harwich,111,883.54
+Hatfield,10,307.96
+Haverhill,1066,1618.94
+Hawley,0,0
+Heath,0,0
+Hingham,237,996.31
+Hinsdale,<5,*
+Holbrook,176,1558.21
+Holden,85,450.67
+Holland,8,312.46
+Holliston,53,384.49
+Holyoke,764,1854.17
+Hopedale,34,598.69
+Hopkinton,110,674.25
+Hubbardston,5,107.28
+Hudson,163,778.17
+Hull,47,475.88
+Huntington,13,587.87
+Ipswich,62,461.07
+Kingston,116,855.24
+Lakeville,54,478.27
+Lancaster,75,875.37
+Lanesborough,7,229.80
+Lawrence,2681,3040.51
+Lee,16,272.12
+Leicester,128,1136.38
+Lenox,13,266.47
+Leominster,516,1271.18
+Leverett,<5,*
+Lexington,302,887.06
+Leyden,0,0
+Lincoln,32,369.82
+Littleton,94,967.26
+Longmeadow,202,1302.41
+Lowell,2457,2102.54
+Ludlow,110,527.22
+Lunenburg,58,557.32
+Lynn,3117,3089.10
+Lynnfield,87,746.84
+Malden,1053,1554.16
+Manchester,16,323.47
+Mansfield,147,621.93
+Marblehead,211,1097.95
+Marion,11,237.04
+Marlborough,829,1908.42
+Marshfield,152,587.79
+Mashpee,50,325.14
+Mattapoisett,28,484.31
+Maynard,63,603.76
+Medfield,33,289.46
+Medford,922,1516.09
+Medway,103,787.47
+Melrose,216,746.83
+Mendon,23,397.02
+Merrimac,26,406.89
+Methuen,827,1544.32
+Middleborough,243,902.61
+Middlefield,0,0
+Middleton,144,1395.44
+Milford,575,1962.24
+Millbury,184,1347.29
+Millis,45,569.93
+Millville,13,366.12
+Milton,286,998.96
+Monroe,0,0
+Monson,30,355.65
+Montague,25,292.45
+Monterey,0,0
+Montgomery,<5,*
+Mount Washington,0,0
+Nahant,37,1130.83
+Nantucket,12,105.82
+Natick,381,1060.61
+Needham,303,1033.70
+New Ashford,0,0
+New Bedford,1583,1590.07
+New Braintree,<5,*
+New Marlborough,6,392.17
+New Salem,0,0
+Newbury,8,120.32
+Newburyport,65,365.09
+Newton,710,774.03
+Norfolk,22,178.20
+North Adams,47,359.96
+North Andover,269,889.30
+North Attleborough,228,754.59
+North Brookfield,13,279.77
+North Reading,175,1058.38
+Northampton,254,868.93
+Northborough,192,1402.40
+Northbridge,281,1562.47
+Northfield,<5,*
+Norton,120,604.14
+Norwell,116,1083.62
+Norwood,513,1703.63
+Oak Bluffs,5,96.73
+Oakham,<5,*
+Orange,35,428.77
+Orleans,15,265.58
+Otis,<5,*
+Oxford,52,377.29
+Palmer,43,361.51
+Paxton,27,545.54
+Peabody,877,1572.65
+Pelham,<5,*
+Pembroke,80,428.42
+Pepperell,44,358.28
+Peru,<5,*
+Petersham,7,552.57
+Phillipston,15,875.04
+Pittsfield,153,345.55
+Plainfield,0,0
+Plainville,57,624.75
+Plymouth,487,785.03
+Plympton,8,267.64
+Princeton,<5,*
+Provincetown,22,838.46
+Quincy,1019,1007.51
+Randolph,864,2524.91
+Raynham,218,1459.46
+Reading,270,982.39
+Rehoboth,49,388.40
+Revere,1506,2472.24
+Richmond,5,376.53
+Rochester,26,461.19
+Rockland,262,1452.61
+Rockport,74,1129.05
+Rowe,0,0
+Rowley,34,550.73
+Royalston,<5,*
+Russell,11,582.93
+Rutland,43,477.30
+Salem,550,1221.72
+Salisbury,49,554.26
+Sandisfield,<5,*
+Sandwich,80,380.32
+Saugus,480,1688.63
+Savoy,<5,*
+Scituate,131,722.90
+Seekonk,70,499.92
+Sharon,125,682.66
+Sheffield,15,485.90
+Shelburne,8,432.60
+Sherborn,11,286.66
+Shirley,158,1874.46
+Shrewsbury,291,738.60
+Shutesbury,<5,*
+Somerset,136,734.83
+Somerville,799,1043.92
+South Hadley,130,718.27
+Southampton,29,482.89
+Southborough,40,411.41
+Southbridge,108,641.21
+Southwick,48,490.13
+Spencer,41,355.90
+Springfield,2186,1380.63
+Sterling,101,1282.81
+Stockbridge,14,802.96
+Stoneham,342,1533.36
+Stoughton,557,2013.92
+Stow,29,402.23
+Sturbridge,33,316.03
+Sudbury,174,971.86
+Sunderland,8,210.44
+Sutton,46,511.99
+Swampscott,119,868.19
+Swansea,90,563.57
+Taunton,854,1490.95
+Templeton,110,1231.67
+Tewksbury,543,1763.52
+Tisbury,6,144.18
+Tolland,<5,*
+Topsfield,106,1813.85
+Townsend,29,316.98
+Truro,9,455.74
+Tyngsborough,81,675.52
+Tyringham,<5,*
+Upton,22,243.34
+Uxbridge,64,415.23
+Wakefield,286,1059.07
+Wales,<5,*
+Walpole,217,837.82
+Waltham,1071,1606.67
+Ware,25,246.58
+Wareham,191,797.47
+Warren,16,295.10
+Warwick,0,0
+Washington,<5,*
+Watertown,347,1046.04
+Wayland,97,730.31
+Webster,148,860.92
+Wellesley,215,723.06
+Wellfleet,5,181.25
+Wendell,0,0
+Wenham,17,326.54
+West Boylston,37,471.33
+West Bridgewater,120,1655.74
+West Brookfield,16,431.32
+West Newbury,6,147.00
+West Springfield,303,1028.61
+West Stockbridge,<5,*
+West Tisbury,7,242.81
+Westborough,319,1693.01
+Westfield,416,1000.52
+Westford,130,561.81
+Westhampton,<5,*
+Westminster,25,340.96
+Weston,103,928.45
+Westport,68,408.56
+Westwood,112,759.87
+Weymouth,647,1154.05
+Whately,<5,*
+Whitman,174,1128.42
+Wilbraham,195,1340.90
+Williamsburg,10,405.37
+Williamstown,81,1099.24
+Wilmington,310,1271.89
+Winchendon,74,688.59
+Winchester,102,456.91
+Windsor,0,0
+Winthrop,229,1215.03
+Woburn,531,1279.80
+Worcester,4299,2240.60
+Worthington,0,0
+Wrentham,182,1614.27
+Yarmouth,101,420.43
+Unknown1,284,*
+State Total,88970,1277.06
