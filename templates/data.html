@@ -3,13 +3,6 @@
 <style>
     body {font-family: Arial;}
     
-    /* Style the tab */
-    /* .tab {
-      overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #f1f1f1;
-    } */
-    
     /* Style the buttons inside the tab */
     .tab button {
       background-color: inherit;
@@ -105,7 +98,27 @@
                 }
             };
             xmlhttp.send();
+         
+
+            // var countryJson = '{{ countryJson }}';
+            // countryJson = countryJson.replace(/&#39;/ig,'"');
+            // var decoded = $('<textarea/>').html(countryJson).text();
+            // decoded = decoded.replace(/"\'"/ig, '\"');
+            // var countries = JSON.parse(decoded);
+            // var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>Country</th><th>COVID Positive</th></tr>';
+            // var main = "";
+            // var i = 0;
+            // for (country in countries){
+            //     main += "<tr><td>" + i + "</td><td>" + country['Country'] + "</td><td>" + country['TotalConfirmed'] + "</td></tr>";
+            //     i++;
+            //     break;
+            // }
+            // var tblbottom = "</table>";
+            // var tbl = tbltop + main + tblbottom;
+
+            // document.getElementById("countryinfo").innerHTML = tbl;
         }
+        
 
         window.onload = function() {
             loadstates();
@@ -131,6 +144,7 @@
 <div class="tab">
     <button class="tablinks" onclick="openTab(event, 'states')">States</button>
     <button class="tablinks" onclick="openTab(event, 'countries')">Countries</button>
+    <button class="tablinks" onclick="openTab(event, 'graphs')">Graphs</button>
 </div>
 
 <div id="states" class="tabcontent" style="display:block;">
@@ -141,6 +155,12 @@
 <div id="countries" class="tabcontent">
     <h3 style="text-align:center;">Global</h3>
     <div id = "countryinfo"></div>
+</div>
+
+<div id="graphs" class="tabcontent">
+    <h3 style="text-align:center;">Graphs</h3>
+    <img src="static/images/countryData.png", width = "100%", height = "auto">
+    <img src="static/images/stateData.png", width = "100%", height = "auto">
 </div>
 
 
