@@ -10,7 +10,7 @@ Your google api key has to have Geocoding API and Maps JavaScript API enabled. <
 Install the required packages listed in <i>requirements.txt</i>.</br>
 To start the application, clone this repository and set it as the current directory, then run<br>
 ```
-python app.py
+python3 app.py
 ```
 Once successfully started, the application will run on the localhost -- check the command line for the right port. <br>
 
@@ -25,3 +25,6 @@ Once the image is built, run the following command to start the container:<br>
 docker run -d -p 5000:5000 coronamapping
 ```
 This will run the docker container in the background. The application will be deployed on localhost:5000
+
+<strong>Note</strong><br>
+It might take 5-10 seconds to open each page.
