@@ -7,7 +7,22 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    p = parseURL
+    countryName = []
+    countryNumber = []
+    countries = p.countries()
+    for country in countries:
+        countryName.append(country['Country'])
+        countryNumber.append(country['TotalConfirmed'])
+    
+    stateName = []
+    stateNumber = []
+    states = p.states()
+    for state in states:
+        stateName.append(state['state'])
+        stateNumber.append(state['positive'])
+
+    return render_template('index.html', countryName = countryName, countryNumber = countryNumber, stateName = stateName, stateNumber = stateNumber)
 @app.route('/about')
 def about():
     return render_template('about.html')
