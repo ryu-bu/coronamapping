@@ -115,7 +115,6 @@ class parseURL:
 
             #infection rate
 
-
             for j in range(len(y_infection)-1):
                 maxRate = j 
                 for z in range(j, len(y_infection)):

@@ -1,6 +1,6 @@
 FROM python:3
 
-MAINTAINER Ryuichi Ohhata ryu74@bu.edu
+LABEL maintainer = "ryu74@bu.edu"
 
 WORKDIR /usr/src/app
 

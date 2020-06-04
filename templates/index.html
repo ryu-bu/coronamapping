@@ -12,6 +12,7 @@
 
   function drawRegionsMap() {
 
+    // create world map
     var countryData = new google.visualization.DataTable();
     countryData.addColumn('string', 'Country');
     countryData.addColumn('number', 'Total Confirmed Cases');
@@ -22,6 +23,7 @@
       countryData.addRows([[nameC[i], num[i]]]);
     }
 
+    // create US map
     var statesData = new google.visualization.DataTable();
     statesData.addColumn('string', 'State');
     statesData.addColumn('number', 'Total Confirmed Cases');

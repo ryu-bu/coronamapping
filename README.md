@@ -1,6 +1,6 @@
 # coronamapping
 
-To have it fully function, create .env file in the same directory as app.py then put the following line: <br>
+To have it fully function, create a .env file in the same directory as app.py then put the following line: <br>
 ```
 API_KEY = your_google_api_key
 ```

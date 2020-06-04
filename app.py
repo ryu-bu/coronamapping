@@ -4,12 +4,13 @@ import os
 from plot import parseURL
 
 app = Flask(__name__)
-
 app.config.from_pyfile('settings.py')
+
 @app.route('/')
 def index():
     API_KEY = app.config.get("API_KEY") 
 
+    #to feed the map
     p = parseURL
     countryName = []
     countryNumber = []
@@ -29,8 +30,8 @@ def index():
 
 @app.route('/data')
 def data():
-    # urllib.request.urlretrieve("https://vignette.wikia.nocookie.net/supermarioglitchy4/images/f/f3/Big_chungus.png/revision/latest?cb=20200511041102", "./static/images/test.png")
 
+    #generate images
     p = parseURL
     jsonizeCountry = p.countries()
     jsonizeState = p.states()
