@@ -60,6 +60,7 @@ class parseURL:
             y_name = "Rate (%)"
             visualizeJson(x, y_rate, x_name, y_name, title, filename)  
             
+            return countryData
 
     def states():
         with urllib.request.urlopen("https://covidtracking.com/api/states") as url:
@@ -133,7 +134,7 @@ class parseURL:
             y_name = "Rate (%)"
             visualizeJson(x_infection, y_infection, x_name, y_name, title, filename)  
 
-
+            return stateData
 
 
 def visualizeJson(x, y, x_name, y_name, title, filename):

@@ -5,18 +5,28 @@ from plot import parseURL
 
 app = Flask(__name__)
 
+app.config.from_pyfile('settings.py')
 @app.route('/')
 def index():
-    return render_template('index.html')
-@app.route('/about')
-def about():
-    return render_template('about.html')
-@app.route('/teams')
-def teams():
-    return render_template('teams.html')
-@app.route('/maps.js')
-def mapsjs():
-    return render_template('maps.js')
+    API_KEY = app.config.get("API_KEY") 
+
+    p = parseURL
+    countryName = []
+    countryNumber = []
+    countries = p.countries()
+    for country in countries:
+        countryName.append(country['Country'])
+        countryNumber.append(country['TotalConfirmed'])
+    
+    stateName = []
+    stateNumber = []
+    states = p.states()
+    for state in states:
+        stateName.append(state['state'])
+        stateNumber.append(state['positive'])
+
+    return render_template('index.html', countryName = countryName, countryNumber = countryNumber, stateName = stateName, stateNumber = stateNumber, API_KEY = API_KEY)
+
 @app.route('/data')
 def data():
     # urllib.request.urlretrieve("https://vignette.wikia.nocookie.net/supermarioglitchy4/images/f/f3/Big_chungus.png/revision/latest?cb=20200511041102", "./static/images/test.png")

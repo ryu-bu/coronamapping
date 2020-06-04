@@ -1,15 +1,70 @@
 {% extends 'home-layout.html' %}
 
 {%block body%}
-<div class="jumbotron">
-  <h2 class="display-2" style="text-align:center;">Corona Mapping Test</h2>
-  <p style="text-align:center;">This is a test</p>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  var API_KEY = '{{API_KEY | safe}}';
+  google.charts.load('current', {
+    'packages':['geochart'],
+    'mapsApiKey': API_KEY
+  });
+  google.charts.setOnLoadCallback(drawRegionsMap);
+
+  function drawRegionsMap() {
+
+    var countryData = new google.visualization.DataTable();
+    countryData.addColumn('string', 'Country');
+    countryData.addColumn('number', 'Total Confirmed Cases');
+    var nameC = {{ countryName | tojson}};
+    var num = {{ countryNumber | tojson}};
+
+    for (var i = 0; i < nameC.length; i++){
+      countryData.addRows([[nameC[i], num[i]]]);
+    }
+
+    var statesData = new google.visualization.DataTable();
+    statesData.addColumn('string', 'State');
+    statesData.addColumn('number', 'Total Confirmed Cases');
+    var nameS = {{ stateName | tojson}};
+    var numS = {{ stateNumber | tojson}};
+ 
+    for (var i = 0; i < nameS.length; i++){
+      statesData.addRows([[nameS[i], numS[i]]]);
+    }
+
+    var countryOptions = {
+      colors: ['#d4d4d4', '#961515'],
+      backgroundColor: '#302e2f'
+    };
+
+    var stateOptions = {
+      region: 'US',
+      colors: ['#d4d4d4', '#961515'],
+      backgroundColor: '#302e2f',
+      displayMode: 'regions',
+      resolution: 'provinces'
+    };
+
+    var countryChart = new google.visualization.GeoChart(document.getElementById('countries_div'));
+    var stateChart = new google.visualization.GeoChart(document.getElementById('states_div'));
+
+    countryChart.draw(countryData, countryOptions);
+    stateChart.draw(statesData, stateOptions);
+  }
+</script>
+<div class="container">
+  <div class="jumbotron">
+    <h2 class="display-2" style="text-align:center;">Corona Mapping Project</h2>
+  </div>
+  <p>Hover the cursor over a region to display data.</p>
 </div>
-<div style="text-align:center;">
-<div id="map" style="position:absolute;left:25%;right:25%;width:50%;"></div>
-</div>
-<script type="text/javascript" src="/maps.js"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SLBny2SO2Wf2nfacbU2siLr2pGFpuew&callback=initMap">
-    </script>
+<body>
+  <div class="container-xl">
+    <h3>World</h3>
+    <div id="countries_div" style="width: 100%; height: auto;"></div>
+    <br>
+    <h3>US</h3>
+    <div id="states_div" style="width: 100%; height: auto;"></div>
+  </div>
+</body>
 {%endblock%}

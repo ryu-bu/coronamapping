@@ -1,12 +1,14 @@
 # coronamapping
 
-4/15/2020 Updates:<br>
-added map<br>
-added Dockerfile<br>
+To have it fully function, create .env file in the same directory as app.py then put the following line: <br>
+```
+API_KEY = your_google_api_key
+```
+Your google api key has to have Geocoding API and Maps JavaScript API enabled. <br>
 
 <strong>Instruction</strong><br>
 Install the required packages listed in <i>requirements.txt</i>.</br>
-To start the application, clone and move to this repository, then run<br>
+To start the application, clone this repository and set it as the current directory, then run<br>
 ```
 python app.py
 ```

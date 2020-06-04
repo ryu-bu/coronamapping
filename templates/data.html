@@ -1,5 +1,6 @@
 {% extends 'home-layout.html' %}
 {%block body%}
+<!-- copied from W3Schools -->
 <style>
     body {font-family: Arial;}
     
@@ -33,150 +34,150 @@
       border-top: none;
     }
     </style>
-<div class="jumbotron">
-    <h3>Data</h3>
-    <script>
-        var baseurl1 = "https://covidtracking.com/api";
-        var baseurl2 = "https://api.covid19api.com";
 
-        function dynamicsort(property,order) {
-            var sort_order = 1;
-            if(order === "desc"){
-                sort_order = -1;
+<!-- parsing restAPIs + calulations  -->
+
+<script>
+    var baseurl1 = "https://covidtracking.com/api";
+    var baseurl2 = "https://api.covid19api.com";
+
+    function dynamicsort(property,order) {
+        var sort_order = 1;
+        if(order === "desc"){
+            sort_order = -1;
+        }
+        return function (a, b){
+
+            if(a[property] < b[property]){
+                    return -1 * sort_order;
+            }else if(a[property] > b[property]){
+                    return 1 * sort_order;
+            }else{
+                    return 0 * sort_order;
             }
-            return function (a, b){
-                // a should come before b in the sorted order
-                if(a[property] < b[property]){
-                        return -1 * sort_order;
-                // a should come after b in the sorted order
-                }else if(a[property] > b[property]){
-                        return 1 * sort_order;
-                // a and b are the same
-                }else{
-                        return 0 * sort_order;
+        }
+    }
+
+    function loadstates(){
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", baseurl1 + "/states", true);
+        xmlhttp.onreadystatechange = function() {
+            if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+                var states = JSON.parse(xmlhttp.responseText);
+                states.sort(dynamicsort("positive", "desc"));
+                var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>State</th><th>COVID Positive</th><th>Total Deaths / Total Positives (%)</th><th>Total Positives / Total Tests (%)</th></tr>';
+                
+                var main = "";
+                for (i = 0; i < states.length; i++){
+                    var rate = (states[i].death / states[i].positive) * 100;
+                    rate = rate.toFixed(3);
+                    var infectionRate = (states[i].positive / states[i].totalTestResults) * 100;
+                    infectionRate = infectionRate.toFixed(3);
+                    main += "<tr><td>" + i + "</td><td>" + states[i].state + "</td><td>" + states[i].positive + "</td><td>" + rate + "</td><td>" + infectionRate + "</td></tr>";
                 }
+                var tblbottom = "</table>";
+                var tbl = tbltop + main + tblbottom;
+                document.getElementById("stateinfo").innerHTML = tbl;
             }
-        }
+        };
+        xmlhttp.send();
+    }
 
-        function loadstates(){
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", baseurl1 + "/states", true);
-            xmlhttp.onreadystatechange = function() {
-                if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
-                    var states = JSON.parse(xmlhttp.responseText);
-                    states.sort(dynamicsort("positive", "desc"));
-                    var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>State</th><th>COVID Positive</th><th>Total Deaths / Total Positives (%)</th><th>Total Positives / Total Tests (%)</th></tr>';
-                    
-                    var main = "";
-                    for (i = 0; i < states.length; i++){
-                        var rate = (states[i].death / states[i].positive) * 100;
-                        var infectionRate = (states[i].positive / states[i].totalTestResults) * 100;
-                        main += "<tr><td>" + i + "</td><td>" + states[i].state + "</td><td>" + states[i].positive + "</td><td>" + rate + "</td><td>" + infectionRate + "</td></tr>";
-                    }
-                    var tblbottom = "</table>";
-                    var tbl = tbltop + main + tblbottom;
-                    document.getElementById("stateinfo").innerHTML = tbl;
+    function loadcountries(){
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", baseurl2 + "/summary", true);
+        xmlhttp.onreadystatechange = function() {
+            if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+                var country = JSON.parse(xmlhttp.responseText);
+                country.Countries.sort(dynamicsort("TotalConfirmed", "desc"));
+                var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>Country</th><th>COVID Positives</th><th>Total Deaths</th><th>Deaths / Total Positives (%)</th></tr>';
+                
+                var main = "";
+                for (i = 0; i < country["Countries"].length; i++){
+                    var rate = (country.Countries[i].TotalDeaths / country.Countries[i].TotalConfirmed)*100; 
+                    main += "<tr><td>" + i + "</td><td>" + country.Countries[i].Country + "</td><td>" + country.Countries[i].TotalConfirmed + "</td><td>" + country.Countries[i].TotalDeaths + "</td><td>" + rate + "</td></tr>";
                 }
-            };
-            xmlhttp.send();
-        }
-
-        function loadcountries(){
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", baseurl2 + "/summary", true);
-            xmlhttp.onreadystatechange = function() {
-                if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
-                    var country = JSON.parse(xmlhttp.responseText);
-                    country.Countries.sort(dynamicsort("TotalConfirmed", "desc"));
-                    var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>Country</th><th>COVID Positives</th><th>Total Deaths</th><th>Deaths / Total Positives (%)</th></tr>';
-                    
-                    var main = "";
-                    for (i = 0; i < country["Countries"].length; i++){
-                        var rate = (country.Countries[i].TotalDeaths / country.Countries[i].TotalConfirmed)*100; 
-                        main += "<tr><td>" + i + "</td><td>" + country.Countries[i].Country + "</td><td>" + country.Countries[i].TotalConfirmed + "</td><td>" + country.Countries[i].TotalDeaths + "</td><td>" + rate + "</td></tr>";
-                    }
-                    var tblbottom = "</table>";
-                    var tbl = tbltop + main + tblbottom;
-                    document.getElementById("countryinfo").innerHTML = tbl;
-                }
-            };
-            xmlhttp.send();
-         
-
-            // var countryJson = '{{ countryJson }}';
-            // countryJson = countryJson.replace(/&#39;/ig,'"');
-            // var decoded = $('<textarea/>').html(countryJson).text();
-            // decoded = decoded.replace(/"\'"/ig, '\"');
-            // var countries = JSON.parse(decoded);
-            // var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>Country</th><th>COVID Positive</th></tr>';
-            // var main = "";
-            // var i = 0;
-            // for (country in countries){
-            //     main += "<tr><td>" + i + "</td><td>" + country['Country'] + "</td><td>" + country['TotalConfirmed'] + "</td></tr>";
-            //     i++;
-            //     break;
-            // }
-            // var tblbottom = "</table>";
-            // var tbl = tbltop + main + tblbottom;
-
-            // document.getElementById("countryinfo").innerHTML = tbl;
-        }
-        
-
-        window.onload = function() {
-            loadstates();
-            loadcountries();
-        }
-
-        function openTab(evt, option) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
+                var tblbottom = "</table>";
+                var tbl = tbltop + main + tblbottom;
+                document.getElementById("countryinfo").innerHTML = tbl;
             }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(option).style.display = "block";
-            evt.currentTarget.className += " active";
+        };
+        xmlhttp.send();
+    }
+    
+
+    window.onload = function() {
+        loadstates();
+        loadcountries();
+    }
+
+    function openTab(evt, option) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
         }
-    </script>
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(option).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+<div class="container">
+    <div class="jumbotron">
+        <h3>Data</h3>
+    </div>
+
+    <!-- set up tabs -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'states')">States</button>
+        <button class="tablinks" onclick="openTab(event, 'countries')">Countries</button>
+        <button class="tablinks" onclick="openTab(event, 'graphs')">Graphs</button>
+    </div>
+
+    <div id="states" class="tabcontent" style="display:block;">
+        <h3 style="text-align:center;">US States</h3>
+        <br>
+        <p>*list in descending order by total cases</p>
+        <div id = "stateinfo"></div>
+    </div>
+
+    <div id="countries" class="tabcontent">
+        <h3 style="text-align:center;">Global</h3>
+        <br>
+        <p>*list in descending order by total cases</p>
+        <div id = "countryinfo"></div>
+    </div>
+
+    <div id="graphs" class="tabcontent">
+        <h3 style="text-align:center;">Graphs</h3>
+        <br>
+        <ur>
+            <li><a href="#countryData">Total Confirmed Cases vs Countries</a></li>
+            <li><a href="#stateData">Total Confirmed Cases vs States</a></li>
+            <li><a href="#rateCountry">Death Rates (%) vs Countries in Descending Order</a></li>
+            <li><a href="#rateState">Death Rates (%) vs States in Descending Order</a></li>
+            <li><a href="#rateInfectionState">Infection Rates (%) vs States in Desceding Order</a></li>
+        </ur>
+        <br>
+        <h4 id = "countryData">Total Confirmed Cases vs Countries (Top 50)</h4>
+        <a href="static/images/countryData.png"><img src="static/images/countryData.png", width = "100%", height = "auto"></a>
+        <br>
+        <h4 id = "stateData">Total Confirmed Cases vs States</h4>
+        <a href="static/images/statData.png"><img src="static/images/stateData.png", width = "100%", height = "auto"></a>
+        <br>
+        <h4 id = "rateCountry">Death Rates (%) vs Countries in Descending Order (Top 50)</h4>
+        <a href="static/images/rateCountry.png"><img src="static/images/rateCountry.png", width = "100%", height = "auto"></a>
+        <br>
+        <h4 id = "rateState">Death Rates (%) vs States in Descending Order</h4>
+        <a href="static/images/rateState.png"><img src="static/images/rateState.png", width = "100%", height = "auto"></a>
+        <br>
+        <h4 id = "rateInfectionState">Infection Rates (%) vs States in Desceding Order</h4>
+        <a href="static/images/rateInfectionState.png"><img src="static/images/rateInfectionState.png", width = "100%", height = "auto"></a>
+    </div>
 </div>
-
-<div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'states')">States</button>
-    <button class="tablinks" onclick="openTab(event, 'countries')">Countries</button>
-    <button class="tablinks" onclick="openTab(event, 'graphs')">Graphs</button>
-</div>
-
-<div id="states" class="tabcontent" style="display:block;">
-    <h3 style="text-align:center;">US States</h3>
-    <div id = "stateinfo"></div>
-</div>
-
-<div id="countries" class="tabcontent">
-    <h3 style="text-align:center;">Global</h3>
-    <div id = "countryinfo"></div>
-</div>
-
-<div id="graphs" class="tabcontent">
-    <h3 style="text-align:center;">Graphs</h3>
-    <br>
-    <ur>
-        <li><a href="#countryData">Total Confirmed Cases vs Countries</a></li>
-        <li><a href="#stateData">Total Confirmed Cases vs States</a></li>
-        <li><a href="#rateCountry">Death Rates (%) vs Countries in Descending Order</a></li>
-        <li><a href="#rateState">Death Rates (%) vs States in Descending Order</a></li>
-        <li><a href="#rateInfectionState">Infection Rates (%) vs States in Desceding Order</a></li>
-    </ur>
-    <img src="static/images/countryData.png", width = "100%", height = "auto", id = "countryData">
-    <img src="static/images/stateData.png", width = "100%", height = "auto", id = "stateData">
-    <img src="static/images/rateCountry.png", width = "100%", height = "auto", id = "rateCountry">
-    <img src="static/images/rateState.png", width = "100%", height = "auto", id = "rateState">
-    <img src="static/images/rateInfectionState.png", width = "100%", height = "auto", id = "rateInfectionState">
-</div>
-
-
 
 {%endblock%}
