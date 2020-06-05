@@ -1,10 +1,11 @@
 from flask import Flask, render_template
 import os
-
+import threading
 from plot import parseURL
 
 app = Flask(__name__)
 app.config.from_pyfile('settings.py')
+
 
 @app.route('/')
 def index():
@@ -33,14 +34,15 @@ def data():
 
     #generate images
     p = parseURL
-    jsonizeCountry = p.countries()
-    jsonizeState = p.states()
+    countries = p.countries()
+    states = p.states()
 
     IMG_FOLDER = os.path.join('static', 'images')
     app.config['UPLOAD_FOLDER'] = IMG_FOLDER
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'test.png')
 
-    return render_template('data.html')
+    return render_template('data.html', jsonizeCountry = countries, jsonizeState = states)
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

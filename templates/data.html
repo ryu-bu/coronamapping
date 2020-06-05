@@ -38,8 +38,8 @@
 <!-- parsing restAPIs + calulations  -->
 
 <script>
-    var baseurl1 = "https://covidtracking.com/api";
-    var baseurl2 = "https://api.covid19api.com";
+    // var baseurl1 = "https://covidtracking.com/api";
+    // var baseurl2 = "https://api.covid19api.com";
 
     function dynamicsort(property,order) {
         var sort_order = 1;
@@ -59,50 +59,86 @@
     }
 
     function loadstates(){
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", baseurl1 + "/states", true);
-        xmlhttp.onreadystatechange = function() {
-            if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
-                var states = JSON.parse(xmlhttp.responseText);
-                states.sort(dynamicsort("positive", "desc"));
-                var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>State</th><th>COVID Positive</th><th>Total Deaths / Total Positives (%)</th><th>Total Positives / Total Tests (%)</th></tr>';
+        // var xmlhttp = new XMLHttpRequest();
+        // xmlhttp.open("GET", baseurl1 + "/states", true);
+        // xmlhttp.onreadystatechange = function() {
+        //     if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+        //         var states = JSON.parse(xmlhttp.responseText);
+        //         states.sort(dynamicsort("positive", "desc"));
+        //         var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>State</th><th>COVID Positive</th><th>Total Deaths / Total Positives (%)</th><th>Total Positives / Total Tests (%)</th></tr>';
                 
-                var main = "";
-                for (i = 0; i < states.length; i++){
-                    var rate = (states[i].death / states[i].positive) * 100;
-                    rate = rate.toFixed(3);
-                    var infectionRate = (states[i].positive / states[i].totalTestResults) * 100;
-                    infectionRate = infectionRate.toFixed(3);
-                    main += "<tr><td>" + i + "</td><td>" + states[i].state + "</td><td>" + states[i].positive + "</td><td>" + rate + "</td><td>" + infectionRate + "</td></tr>";
-                }
-                var tblbottom = "</table>";
-                var tbl = tbltop + main + tblbottom;
-                document.getElementById("stateinfo").innerHTML = tbl;
-            }
-        };
-        xmlhttp.send();
+        //         var main = "";
+        //         for (i = 0; i < states.length; i++){
+        //             var rate = (states[i].death / states[i].positive) * 100;
+        //             rate = rate.toFixed(3);
+        //             var infectionRate = (states[i].positive / states[i].totalTestResults) * 100;
+        //             infectionRate = infectionRate.toFixed(3);
+        //             main += "<tr><td>" + i + "</td><td>" + states[i].state + "</td><td>" + states[i].positive + "</td><td>" + rate + "</td><td>" + infectionRate + "</td></tr>";
+        //         }
+        //         var tblbottom = "</table>";
+        //         var tbl = tbltop + main + tblbottom;
+        //         document.getElementById("stateinfo").innerHTML = tbl;
+        //     }
+        // };
+        // xmlhttp.send();
+
+        var states = {{jsonizeState | tojson}};
+        var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>State</th><th>COVID Positive</th><th>Total Deaths / Total Positives (%)</th><th>Total Positives / Total Tests (%)</th></tr>';
+        var stateID = 1;
+        var main = "";
+
+        for (i = 0; i < states.length; i++){
+            var rate = (states[i].death / states[i].positive) * 100;
+            rate = rate.toFixed(3);
+            var infectionRate = (states[i].positive / states[i].totalTestResults) * 100;
+            infectionRate = infectionRate.toFixed(3);
+            main += "<tr><td>" + (i + stateID) + "</td><td>" + states[i].state + "</td><td>" + states[i].positive + "</td><td>" + rate + "</td><td>" + infectionRate + "</td></tr>";
+        }
+
+        var tblbottom = "</table>";
+        var tbl = tbltop + main + tblbottom;
+        document.getElementById("stateinfo").innerHTML = tbl;
+        
     }
 
     function loadcountries(){
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", baseurl2 + "/summary", true);
-        xmlhttp.onreadystatechange = function() {
-            if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
-                var country = JSON.parse(xmlhttp.responseText);
-                country.Countries.sort(dynamicsort("TotalConfirmed", "desc"));
-                var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>Country</th><th>COVID Positives</th><th>Total Deaths</th><th>Deaths / Total Positives (%)</th></tr>';
+        // var xmlhttp = new XMLHttpRequest();
+        // xmlhttp.open("GET", baseurl2 + "/summary", true);
+        // xmlhttp.onreadystatechange = function() {
+        //     if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+        //         var country = JSON.parse(xmlhttp.responseText);
+        //         country.Countries.sort(dynamicsort("TotalConfirmed", "desc"));
+        //         var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>Country</th><th>COVID Positives</th><th>Total Deaths</th><th>Deaths / Total Positives (%)</th></tr>';
                 
-                var main = "";
-                for (i = 0; i < country["Countries"].length; i++){
-                    var rate = (country.Countries[i].TotalDeaths / country.Countries[i].TotalConfirmed)*100; 
-                    main += "<tr><td>" + i + "</td><td>" + country.Countries[i].Country + "</td><td>" + country.Countries[i].TotalConfirmed + "</td><td>" + country.Countries[i].TotalDeaths + "</td><td>" + rate + "</td></tr>";
-                }
-                var tblbottom = "</table>";
-                var tbl = tbltop + main + tblbottom;
-                document.getElementById("countryinfo").innerHTML = tbl;
-            }
-        };
-        xmlhttp.send();
+        //         var main = "";
+        //         for (i = 0; i < country["Countries"].length; i++){
+        //             var rate = (country.Countries[i].TotalDeaths / country.Countries[i].TotalConfirmed)*100; 
+        //             main += "<tr><td>" + i + "</td><td>" + country.Countries[i].Country + "</td><td>" + country.Countries[i].TotalConfirmed + "</td><td>" + country.Countries[i].TotalDeaths + "</td><td>" + rate + "</td></tr>";
+        //         }
+        //         var tblbottom = "</table>";
+        //         var tbl = tbltop + main + tblbottom;
+        //         document.getElementById("countryinfo").innerHTML = tbl;
+        //     }
+        // };
+        // xmlhttp.send();
+
+        var countries = {{jsonizeCountry | tojson}};
+        var tbltop = '<table class="table" style="text-align:center;"><tr><th>ID</th><th>Country</th><th>COVID Positives</th><th>Total Deaths</th><th>Deaths / Total Positives (%)</th></tr>';
+        var main = "";
+        var countryID = 1;
+
+        
+
+        for (var i = 0; i < countries.length; i++){
+            var rate = (countries[i].TotalDeaths / countries[i].TotalConfirmed)*100; 
+            rate = rate.toFixed(3);
+            console.log(countries[i].Country);
+            main += "<tr><td>" + (i + countryID) + "</td><td>" + countries[i].Country + "</td><td>" + countries[i].TotalConfirmed + "</td><td>" + countries[i].TotalDeaths + "</td><td>" + rate + "</td></tr>";
+        }
+
+        var tblbottom = "</table>";
+        var tbl = tbltop + main + tblbottom;
+        document.getElementById("countryinfo").innerHTML = tbl;
     }
     
 

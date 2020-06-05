@@ -2,4 +2,4 @@ flask
 anaconda
 matplotlib
 python-dotenv
-uwsgi
+gunicorn

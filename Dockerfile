@@ -6,7 +6,8 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install requests
 
 COPY . .
 
-CMD ["uwsgi", "app.ini"]
+CMD gunicorn app:app --bind 0.0.0.0:$PORT --reload
