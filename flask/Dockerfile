@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.8
 
 LABEL maintainer = "ryu74@bu.edu"
 
@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["python", "app.py"]
+CMD ["uwsgi", "app.ini"]

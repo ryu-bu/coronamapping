@@ -2,3 +2,4 @@ flask
 anaconda
 matplotlib
 python-dotenv
+uwsgi
