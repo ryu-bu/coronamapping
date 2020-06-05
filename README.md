@@ -8,9 +8,9 @@ Your google api key has to have Geocoding API and Maps JavaScript API enabled. <
 
 <strong>Instruction</strong><br>
 Install the required packages listed in <i>requirements.txt</i>.</br>
-To start the application, clone this repository and set it as the current directory, then run<br>
+To start the application, clone this repository and go to flask directory, and run<br>
 ```
-python3 app.py
+flask run
 ```
 Once successfully started, the application will run on the localhost -- check the command line for the right port. <br>
 
@@ -18,13 +18,13 @@ Once successfully started, the application will run on the localhost -- check th
 Install Docker daemon first if you don't have it <br>
 To build the docker image, run<br>
 ```
-docker build -t coronamapping .
+docker-compose build
 ```
 Once the image is built, run the following command to start the container:<br>
 ```
-docker run -d -p 5000:5000 coronamapping
+docker-compose run
 ```
-This will run the docker container in the background. The application will be deployed on localhost:5000
+This will run the docker container in the background. The application will be deployed on localhost
 
 <strong>Note</strong><br>
-It might take 5-10 seconds to open each page.
+It might take 5-15 seconds to open each page.
