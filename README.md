@@ -1,5 +1,7 @@
 # coronamapping
 
+restAPIs: https://api.covid19api.com/summary and https://covidtracking.com/api/states . Numbers used in this project are from these two sources. <br>
+
 To have it fully function, create a .env file in the same directory as app.py then put the following line: <br>
 ```
 API_KEY = your_google_api_key
